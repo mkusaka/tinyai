@@ -2,7 +2,7 @@ import { Command } from "@cliffy/command";
 import { ChatOptions, chatOptionsSchema } from "../types/schema.js";
 import { createProvider } from "../providers/factory.js";
 import { ChatHistory } from "../chat/history.js";
-import { handleChatStream, handleJsonChatStream } from "../chat/stream.js";
+import { handleChatStream, handleJSONChatStream } from "../chat/stream.js";
 import { getProviderApiKey } from "../config/env.js";
 import { ProviderType } from "../providers/types.js";
 
@@ -60,7 +60,7 @@ async function handleChatCommand(options: ChatOptions): Promise<void> {
       history.addUserMessage(userInput);
 
       if (options.json) {
-        const response = await handleJsonChatStream(aiProvider, history.getMessages());
+        const response = await handleJSONChatStream(aiProvider, history.getMessages());
         console.log(JSON.stringify({ response }, null, 2));
       } else {
         const response = await handleChatStream(aiProvider, history.getMessages());
