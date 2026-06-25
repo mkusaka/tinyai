@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { Message as AIMessage } from "ai";
 
 export type Role = "user" | "assistant" | "system";
 export type ProviderType = "openai" | "anthropic";
